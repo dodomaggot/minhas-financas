@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://api.github.com http://localhost:*; frame-src blob:">
+  <title>Minhas Finanças</title>
+  <meta name="theme-color" content="#1d2430">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Finanças">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/icone-192.png">
+  <link rel="apple-touch-icon" href="icones/icone-180.png">
+  <script src="tema.js?v=2026.11.23-2101"></script>
+  <link rel="stylesheet" href="styles.css?v=2026.11.23-2101">
+</head>
+<body class="web">
+  <aside class="lateral" id="lateral">
+    <div class="marca">
+      <span class="marca-icone">R$</span>
+      <span>Minhas Finanças</span>
+    </div>
+    <nav id="menu">
+      <button data-tela="painel" class="ativo">Painel</button>
+      <button data-tela="lancamentos">Lançamentos</button>
+      <div class="menu-grupo">Dinheiro</div>
+      <button data-tela="contas">Contas</button>
+      <button data-tela="cartoes">Cartões de crédito</button>
+      <button data-tela="fixos">Fixos e recorrentes</button>
+      <div class="menu-grupo">Planejamento</div>
+      <button data-tela="orcamento">Orçamento</button>
+      <button data-tela="metas">Metas</button>
+      <button data-tela="projecao">Projeção do saldo</button>
+      <div class="menu-grupo">Ajustes</div>
+      <button data-tela="categorias">Categorias e tags</button>
+      <button data-tela="ferramentas">Configurações</button>
+      <button data-tela="sincronizacao">Sincronização</button>
+      <button data-tela="manual">📖 Manual</button>
+    </nav>
+    <div class="versao">versão 2026.11.23-2101</div>
+  </aside>
+  <div class="fundo-menu" id="fundoMenu"></div>
+
+  <main>
+    <header class="topo">
+      <button id="menuBotao" class="botao menu-botao" title="Menu" aria-label="Abrir menu">☰</button>
+      <h1 id="tituloTela">Painel</h1>
+      <button id="statusSync" class="status-sync" data-fase="desligado"><span class="icone">☁︎</span><span class="texto">Sincronização</span></button>
+      <div class="seletor-mes" id="seletorMes">
+        <button id="mesAnterior" title="Mês anterior">‹</button>
+        <button id="mesTexto" title="Voltar para o mês atual"></button>
+        <button id="mesProximo" title="Próximo mês">›</button>
+      </div>
+      <div class="acoes-topo">
+        <button id="sino" class="botao sino" title="Avisos">🔔<span id="contadorAlertas" class="contador" hidden></span></button>
+        <button id="novaTransferencia" class="botao secundario" title="Transferir entre contas">⇄</button>
+        <button id="novaReceita" class="botao secundario" title="Nova receita (tecla R)">+ Receita</button>
+        <button id="novoGasto" class="botao primario" title="Novo gasto (tecla N)">+ Gasto</button>
+      </div>
+    </header>
+    <section id="conteudo"><div id="carregando" class="vazio">Carregando…</div></section>
+  </main>
+
+  <div id="dica" class="dica" hidden></div>
+  <div id="aviso" class="aviso" hidden></div>
+  <div id="visualizador" class="visualizador" hidden><div class="vis-nome"></div><img alt="Comprovante"><div class="vis-fechar">Toque para fechar</div></div>
+
+  <dialog id="modal">
+    <form method="dialog" id="modalForm">
+      <h2 id="modalTitulo"></h2>
+      <div id="modalCorpo"></div>
+      <p id="modalErro" class="erro" hidden></p>
+      <div class="modal-acoes">
+        <button type="button" id="modalCancelar" class="botao secundario">Cancelar</button>
+        <button type="submit" id="modalOk" class="botao primario">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="escolha">
+    <div class="escolha-corpo">
+      <h2 id="escolhaTitulo"></h2>
+      <p id="escolhaMsg"></p>
+      <div class="modal-acoes" id="escolhaBotoes"></div>
+    </div>
+  </dialog>
+
+  <script src="vendor/sql-wasm.js"></script>
+  <script src="db.js?v=2026.11.23-2101"></script>
+  <script src="importar.js?v=2026.11.23-2101"></script>
+  <script src="util.js?v=2026.11.23-2101"></script>
+  <script src="graficos.js?v=2026.11.23-2101"></script>
+  <script src="app.js?v=2026.11.23-2101"></script>
+  <script src="telas-principais.js?v=2026.11.23-2101"></script>
+  <script src="telas-contas.js?v=2026.11.23-2101"></script>
+  <script src="telas-planejamento.js?v=2026.11.23-2101"></script>
+  <script src="telas-config.js?v=2026.11.23-2101"></script>
+  <script src="armazenamento.js?v=2026.11.23-2101"></script>
+  <script src="nuvem.js?v=2026.11.23-2101"></script>
+  <script src="tela-sync.js?v=2026.11.23-2101"></script>
+  <script src="manual.js?v=2026.11.23-2101"></script>
+  <script src="projecao.js?v=2026.11.23-2101"></script>
+  <script src="menu-celular.js?v=2026.11.23-2101"></script>
+  <script src="backend.js?v=2026.11.23-2101"></script>
+</body>
+</html>
